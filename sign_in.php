@@ -1,3 +1,7 @@
+<?php
+include 'connect.php';
+global $mysqli;
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -49,48 +53,40 @@
 
                                     <label>
                                         <?php
-                                        include 'connect.php';
                                         $sql='select ID, DESCRIZ from HOBBIES order by ID ';
                                         $result = $mysqli->query($sql);
-                                        echo '<select class="select form-control-lg" id="tabella" name="tabella">';
-                                        while($row = $result->fetch_assoc()){
-                                            echo '<option value="'.$row['ID'].'">'.$row['DESCRIZ'].'</option>';
+                                        if ($result->num_rows > 0)
+                                        {
+                                            echo '<select class="select form-control-lg" id="tabella" name="tabella">';
+                                            while($row = $result->fetch_assoc()){
+                                                echo '<option value="'.$row['ID'].'">'.$row['DESCRIZ'].'</option>';
+                                            }
+                                            echo '</select>';
                                         }
-                                        echo '</select>';
                                         $result->free();
                                         $mysqli->close();
                                         ?>
-
                                     </label>
                                     <label class="form-label select-label">Hobbie</label>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6 mb-4 pb-2">
-
                                     <div class="form-outline">
                                         <input type="email" id="email" name="email" class="form-control form-control-lg" />
                                         <label class="form-label" for="email">Email</label>
                                     </div>
-
                                 </div>
                                 <div class="col-md-6 mb-4 pb-2">
-
                                     <div class="form-outline">
                                         <input type="password" id="password" name="password" class="form-control form-control-lg" />
                                         <label class="form-label" for="password">Password</label>
                                     </div>
-
                                 </div>
                             </div>
-
-
-
                             <div class="mt-4 pt-2">
                                 <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
                             </div>
-
                         </form>
                     </div>
                 </div>
